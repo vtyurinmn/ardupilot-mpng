@@ -1172,7 +1172,7 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
         // send command received message with command value
         char buf[32];
         snprintf(buf, sizeof(buf), "command received: %lu", (unsigned long)packet.command);
-        send_text_P(SEVERITY_LOW, buf);
+        gcs_send_text_fmt(PSTR("%s"), buf);
 
         switch(packet.command) {
 
