@@ -1169,7 +1169,10 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
         uint8_t result = MAV_RESULT_UNSUPPORTED;
 
         // do command
-        send_text_P(SEVERITY_LOW,PSTR("command received: "));
+        // send command received message with command value
+        char buf[32];
+        snprintf(buf, sizeof(buf), "command received: %lu", (unsigned long)packet.command);
+        send_text_P(SEVERITY_LOW, buf);
 
         switch(packet.command) {
 
